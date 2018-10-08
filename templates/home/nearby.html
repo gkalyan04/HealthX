@@ -42,22 +42,24 @@
         if (distance <= 10) {
             
     
-    
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+    <h3 class="uk-card-title">Default</h3>
+    <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
         document.write("<br>");
         document.write("<div class='container '>");
         document.write("<div class='col-sm-12 col-md-6 col-lg-12'>");
-        document.write("<div class='card bg-light mb-3 shadow-lg p-4 bg-white rounded border-info' style='margin: 0 auto;float: none; width:66%'>");
-        document.write("<div class='card-body'>");
-        document.write("<h5 class='card-title' style='text-align:center;font-size:2.5rem'>"+obj[i].fields.name+"</h5>");
+        document.write("<div class='uk-card uk-card-default uk-card-body uk-width-1-2@m'>");
+        document.write("<h3 class='uk-card-title'>"+obj[i].fields.name+"</h3>");
         
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Facility Type: " +obj[i].fields.facility_name +  "</p>");
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Distance: " + distance +  " km</p>");
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Address: " +obj[i].fields.address + "</p>");
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Landmark: " +obj[i].fields.landmark + "</p>");
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Locality: " +obj[i].fields.locality + "</p>");
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> District: " +obj[i].fields.district_name +  "</p>");
-        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Landline Number: " +obj[i].fields.landline_number +  "</p>");
-        document.write("</div>");
+        
+        document.write("<p> Facility Type: " +obj[i].fields.facility_name +  "</p>");
+        document.write("<p style='text-align:center;font-size:1.4rem'> Distance: " + distance +  " km</p>");
+        document.write("<p  style='text-align:center;font-size:1.4rem'> Address: " +obj[i].fields.address + "</p>");
+        document.write("<p style='text-align:center;font-size:1.4rem'> Landmark: " +obj[i].fields.landmark + "</p>");
+        document.write("<p  style='text-align:center;font-size:1.4rem'> Locality: " +obj[i].fields.locality + "</p>");
+        document.write("<p  style='text-align:center;font-size:1.4rem'> District: " +obj[i].fields.district_name +  "</p>");
+        document.write("<p  style='text-align:center;font-size:1.4rem'> Landline Number: " +obj[i].fields.landline_number +  "</p>");
         document.write("</div>");
         document.write("</div>");
         document.write("</div>");
