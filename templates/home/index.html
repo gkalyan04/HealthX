@@ -4,14 +4,8 @@
     {% block body_block %}
     {% load staticfiles %}
     
-    <!-- <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/> -->
-    <style>
-        #map{ width: 100%; 
-    height: 100%; 
-    position: fixed; 
-    left: 0px; 
-    top: 50px;  }
-      </style>
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+  
     <!-- <div class="jumbotron">
     <h1>Hi, welcome to HealthX</h1>
     <h2>Here are your access records:</h2>
@@ -20,16 +14,32 @@
         
     
     <script>
+      
+      
       // initialize the map
-    var map = L.map('map').setView([20.117, 84.0985], 8);
+    var map = L.map('map').setView([20.117, 86.0], 10);
 
     // load a tile layer
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {
     attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
     maxZoom: 30,
     minZoom: 3
     }).addTo(map);
+
+
+    var dataSet = '{{ query_results|escapejs }}';
+      var obj = JSON.parse(dataSet);
+      console.log(obj);
+      for(var i=1; i<=8606;i=i+7){
+        L.marker([obj[i].fields.latitude, obj[i].fields.longitude]).addTo(map)
+        .bindPopup("Hospital Name: " + obj[i].fields.name + "<br>Facility Type: " + obj[i].fields.facility_name  + "<br>Address: " + obj[i].fields.address + "<br>District: " + obj[i].fields.district_name + "<br>Landline number: " + obj[i].fields.landline_number)
+      } 
+
+    
+
+    
+    
         
         
         

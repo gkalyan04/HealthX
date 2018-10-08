@@ -1,8 +1,73 @@
 <!DOCTYPE html>
 {% extends "home/base.html" %}
     {% block body_block %}
+    <br><br><br>
+        <div class="col-sm-12 col-md-6 col-lg-12" >
+            <div class="border border-white shadow-lg p-4 rounded" style="text-align: center; background-color: #286ec9;">
+                <h1 style="color:white">Your Nearby Hospitals</h1>
+            </div>
+        </div>
+        <br>
+        <hr><br>
+    <script>
 
-    <h1>Hello and welcome to the site!</h1>
+        function calcCrow(lat1, lon1, lat2, lon2) 
+    {
+      var R = 6371; // km
+      var dLat = toRad(lat2-lat1);
+      var dLon = toRad(lon2-lon1);
+      var lat1 = toRad(lat1);
+      var lat2 = toRad(lat2);
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+      return d;
+    }
+
+    // Converts numeric degrees to radians
+    function toRad(Value) 
+    {
+        return Value * Math.PI / 180;
+    }
+
+    var dataSet = '{{ query_results|escapejs }}';
+    var obj = JSON.parse(dataSet);
+    var distance;
     
+    for(var i=0; i<8606;i=i+5){
+        distance = Math.round(calcCrow(20.2961,85.8245,obj[i].fields.latitude,obj[i].fields.longitude)*100) / 100; 
+    
+        if (distance <= 10) {
+            
+    
+    
+        document.write("<br>");
+        document.write("<div class='container '>");
+        document.write("<div class='col-sm-12 col-md-6 col-lg-12'>");
+        document.write("<div class='card bg-light mb-3 shadow-lg p-4 bg-white rounded border-info' style='margin: 0 auto;float: none; width:66%'>");
+        document.write("<div class='card-body'>");
+        document.write("<h5 class='card-title' style='text-align:center;font-size:2.5rem'>"+obj[i].fields.name+"</h5>");
+        
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Facility Type: " +obj[i].fields.facility_name +  "</p>");
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Distance: " + distance +  " km</p>");
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Address: " +obj[i].fields.address + "</p>");
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Landmark: " +obj[i].fields.landmark + "</p>");
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Locality: " +obj[i].fields.locality + "</p>");
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> District: " +obj[i].fields.district_name +  "</p>");
+        document.write("<p class='card-text' style='text-align:center;font-size:1.4rem'> Landline Number: " +obj[i].fields.landline_number +  "</p>");
+        document.write("</div>");
+        document.write("</div>");
+        document.write("</div>");
+        document.write("</div>");
+        
+
+
+    } 
+    }
+
+    
+    </script>
 
     {% endblock %}

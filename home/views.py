@@ -6,6 +6,13 @@ from django.core import serializers
 
 def index(request):
     json_serializer = serializers.get_serializer("json")()
-    query_results = json_serializer.serialize( Hospital.objects.all(), ensure_ascii=False )
+    query_results = json_serializer.serialize(Hospital.objects.all(), ensure_ascii=False )
     data={'query_results':query_results}
     return render(request,'home/index.html',data)
+
+def nearby(request):
+    json_serializer = serializers.get_serializer("json")()
+    query_results = json_serializer.serialize(Hospital.objects.all(), ensure_ascii=False )
+    data={'query_results':query_results}
+    return render(request,'home/nearby.html',data)
+
